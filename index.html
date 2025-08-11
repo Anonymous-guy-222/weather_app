@@ -31,8 +31,8 @@
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
 
-            fetch("http://localhost:3000/weather", {
-            // fetch("https://weather-app-9920.onrender.com/weather", {
+            // fetch("http://localhost:3000/weather", {
+            fetch("https://weather-app-9920.onrender.com/weather", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
@@ -73,4 +73,5 @@
     </script>
 </body>
 </html>
+
 
