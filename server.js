@@ -12,21 +12,22 @@ app.use(express.json());
 
 app.post('/weather', async (req, res) => {
     try {
-        const { lat, lon } = req.body;
+        const { lat, lon, user } = req.body;
         
         if (!lat || !lon) {
             return res.status(400).json({ error: "Latitude and longitude are required" });
         }
 
         //Sheet API
-        fetch(`https://script.google.com/macros/s/AKfycbwI_mfK4thlcjVFYDm-bkhehupAuGGhN3A4PZ37sq8A0joI2z5LGwcgnjyF7klWq4wG-g/exec`, {
+        fetch(`https://script.google.com/macros/s/AKfycby6JhxnCQNHboEOFNElHeHGaAVO8L_lHK7BihE-l_5DRAhe5xsJI-9SuFHSZxFJkv-O/exec`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
                 'lat': lat,
-                'lon': lon
+                'lon': lon,
+                'user': user
             })
         }).then(sheetResponse => sheetResponse.json())
         .then(sheetdata => {
